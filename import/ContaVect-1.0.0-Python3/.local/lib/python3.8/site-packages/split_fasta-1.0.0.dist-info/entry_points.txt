@@ -1,0 +1,3 @@
+[console_scripts]
+splitfasta = splitfasta.__main__:main
+

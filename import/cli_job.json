@@ -1,0 +1,49 @@
+{
+    "name": "Demo_RUN",
+    "raw_fastq_files": "s3://molecular-biology-dcp-prd-raw/Data_for_Elucidata_17Dec2021",
+    "output_folder": "s3://molecular-biology-dcp-prd-processed/VGS_Testing_001/processed",
+    "fastqc": "True",
+    "postfastqc": "True",
+    "Adapter_trimming": "False",
+    "ADAPTER1": "",
+    "ADAPTER2": "",
+    "blastn_opt": "-evalue 0.1 -word_size 20",
+    "blastn_threads": 1,
+    "bwa_mem_opt": "-M",
+    "AVGQUAL": 25,
+    "MINLEN": 1,
+    "bwa_threads": "1",
+    "Running_params": [
+        {
+            "name": "cassette",
+            "fasta": "s3://molecular-biology-dcp-prd-raw/unmasked_ref_files/cassette_unmasked.fa"
+        },
+        {
+            "name": "Transgene_backbone",
+            "fasta": "s3://molecular-biology-dcp-prd-raw/unmasked_ref_files/Transgene_backbone_unmasked.fa"
+        },
+        {
+            "name": "pNLRep2-Caprh74kan.SGR",
+            "fasta": "s3://molecular-biology-dcp-prd-raw/unmasked_ref_files/pNLRep2-Caprh74kan.SGR_unmasked.fa"
+        },
+        {
+            "name": "pHELP",
+            "fasta": "s3://molecular-biology-dcp-prd-raw/unmasked_ref_files/pHELP_unmasked.fa"
+        },
+	{
+		"name": "Homo_sapiens",
+		"fasta": "s3://molecular-biology-dcp-prd-raw/unmasked_ref_files/Homo_sapiens.GRCh38.with.Human_adenovirus_type_5_strain_NHRC_Ad5FS_7151_1-4344_unmasked.fa"
+	},
+        {
+            "name": "Escherichia_coli",
+            "fasta": "s3://molecular-biology-dcp-prd-raw/unmasked_ref_files/Escherichia_coli_strain_RR1_complete_genome_unmasked.fa"
+        }
+    ],
+    "ref_masking": "True",
+    "path_to_indexed_genome": "s3://molecular-biology-dcp-prd-processed/path_to_indexed_genome_11162022",
+    "Mapping_Quality_for_lowmapq": 20,
+    "With_PCR_duplicate_removal": "True",
+    "Without_PCR_duplicate_removal": "True",
+    "With_subsampling_fastq_files": "True",
+    "Subsampling_fastq_files_fraction": 0.7
+}

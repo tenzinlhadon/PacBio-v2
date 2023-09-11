@@ -1,0 +1,1 @@
+source /home/ubuntu/analysis_docker/pacbio_test_final_20:52_sub_1/m64409e_230127/Chimeric_species/PBSuite_15.8.24/setup.sh

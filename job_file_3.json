@@ -1,0 +1,54 @@
+{ 
+    "five_prime_ITR_region":"1-130" , 
+    "three_prime_ITR_region":"4852-4981" ,
+    "intact_cassette_lower_threshold":4500, 
+    "intact_cassette_upper_threshold":5000,
+    "clustering_identity_threshold":0.95,
+    "subsampling_rate":1,
+    "masked_references_folder_path":"s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/masked_references/", 
+    "unmasked_references_folder_path":"s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/",
+    "cassette_configuration_FASTA_path":"s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/cassette_configurations.fa",
+    "features_BED_files_folder_path":"s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/features_BED_files",
+    "ITR_FASTA_path":"s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/ITR.fa",
+    "sample_folder_path":"s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/sample_2/",
+    "output_folder":"s3://genome-analysis-pipeline-pacbio-dev/output/pacbio_v2_test_consensus_swap_64_GB_sample_1_2/",
+    "minimum_chimeric_read_support":50,
+    "max_insertion_length_sniffles":10000,
+    "max_splits_per_read_sniffles":7,
+    "min_alignment_length_sniffles":500,
+    "ref_masking": "False",
+    "blastn_opt": "-evalue 0.1 -word_size 20",
+    "blastn_threads": 12,
+    "Running_params": [
+        {
+            "name": "cassette",
+            "fasta": "s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/cassette_unmasked.fa"
+        },
+        {
+            "name": "Transgene_backbone",
+            "fasta": "s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/Transgene_backbone_unmasked.fa"
+        },
+        {
+            "name": "pNLRep2-Caprh74kan.SGR",
+            "fasta": "s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/pNLRep2-Caprh74kan.SGR_unmasked.fa"
+        },
+        {
+            "name": "pHELP",
+            "fasta": "s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/pHELP_unmasked.fa"
+        },
+        {
+        "name": "Homo_sapiens",
+		"fasta": "s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/Homo_sapiens.GRCh38.with.Human_adenovirus_type_5_strain_NHRC_Ad5FS_7151_1-4344_unmasked.fa"
+	    },
+        {
+            "name": "Escherichia_coli",
+            "fasta": "s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/Escherichia_coli_strain_RR1_complete_genome_unmasked.fa"
+        },
+    {
+        "name": "Lambda",
+        "fasta": "s3://genome-analysis-pipeline-pacbio-dev/pacbio_input_files_test/unmasked_references/Lambda_unmasked.fa"
+    }
+    ]
+
+
+}

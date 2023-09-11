@@ -1,0 +1,15 @@
+Metrics
+Read length
+raw total sequences
+reads mapped
+reads unmapped
+reads MQ0
+supplementary alignments
+total length
+bases mapped
+bases mapped(cigar)
+mismatches
+error rate
+average length
+maximum length
+average quality

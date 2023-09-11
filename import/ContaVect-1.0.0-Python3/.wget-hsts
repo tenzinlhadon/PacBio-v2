@@ -1,0 +1,10 @@
+# HSTS 1.0 Known Hosts database for GNU Wget.
+# Edit at your own risk.
+# <hostname>	<port>	<incl. subdomains>	<created>	<max-age>
+users.soe.ucsc.edu	0	1	1660660050	63072000
+ftp-trace.ncbi.nlm.nih.gov	0	1	1665314458	31536000
+update.code.visualstudio.com	0	0	1690746209	31536000
+sourceforge.net	0	0	1677773171	31536000
+www.ncbi.nlm.nih.gov	0	1	1665309484	31536000
+github.com	0	1	1681895757	31536000
+codeload.github.com	0	0	1679994089	31536000
