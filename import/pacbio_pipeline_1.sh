@@ -161,6 +161,7 @@ for i in $list_samples;do
         echo "Metrics,${reference}" > "$output_stats"
         fasta_length=$(python -c "from Bio import SeqIO; total_length = sum(len(record.seq) for record in SeqIO.parse('${fasta_file}', 'fasta')); print(total_length)")
         echo $fasta_length
+        echo $reference
         echo "Read length:,${fasta_length}" >> "$output_stats"
         samtools stats $output_bam  -@ 20  | grep ^SN | cut -f 2- | awk -F'\t' -v OFS="," '{print $1,$2}' >> "$output_stats"
         awk 'BEGIN { FS=OFS="," } { gsub(":", "", $1) } 1' "$output_stats" > temp_stats && mv temp_stats  "$output_stats" 
@@ -319,12 +320,12 @@ for i in $list_samples;do
     for FILE in ./*.fa
     do
     prefix=$(basename $FILE .fa)
-    /tools/usearch -sortbylength "$prefix".fa -fastaout "$prefix".sorted.fa
+    # /tools/usearch -sortbylength "$prefix".fa -fastaout "$prefix".sorted.fa
     if [ "$usearch_cluster_sequence_type" = "consensus" ]; then
         echo "### generating consensus for ITRs  #####" 
-        /tools/usearch  -cluster_fast "$prefix".sorted.fa -id $clustering_identity_threshold -consout "$prefix"_consensus.fasta -sizeout -threads 24
+        /tools/usearch  -cluster_fast "$prefix".fa -id $clustering_identity_threshold -consout "$prefix"_consensus.fasta -sizeout -threads 24
     else 
-        /tools/usearch  -cluster_fast "$prefix".sorted.fa -id $clustering_identity_threshold -centroids "$prefix"_consensus.fasta -sizeout -threads 24
+        /tools/usearch  -cluster_fast "$prefix".fa -id $clustering_identity_threshold -centroids "$prefix"_consensus.fasta -sizeout -threads 24
         echo "### generating centroids for ITRs  #####" 
 
     fi
@@ -361,14 +362,14 @@ for i in $list_samples;do
     
     /tools/bbmap/reformat.sh  in="$sample"_heterogeneity_primary.bam out="$sample"_heterogeneity.fa
 
-    /tools/usearch -sortbylength "$sample"_heterogeneity.fa -fastaout "$sample"_heterogeneity.sorted.fa
+    # /tools/usearch -sortbylength "$sample"_heterogeneity.fa -fastaout "$sample"_heterogeneity.sorted.fa
 
     if [ "$usearch_cluster_sequence_type" = "consensus" ]; then
         echo " #### generate consensus sequences for cassettes #### "
-        /tools/usearch -cluster_fast "$sample"_heterogeneity.sorted.fa -id $clustering_identity_threshold  -consout "$sample"_cassette_consensus.fasta -sizeout -threads 24
+        /tools/usearch -cluster_fast "$sample"_heterogeneity.fa -id $clustering_identity_threshold  -consout "$sample"_cassette_consensus.fasta -sizeout -threads 24
     else
         echo " #### generate centroid sequences for cassettes #### "
-        /tools/usearch -cluster_fast "$sample"_heterogeneity.sorted.fa -id $clustering_identity_threshold  -centroids "$sample"_cassette_consensus.fasta -sizeout -threads 24
+        /tools/usearch -cluster_fast "$sample"_heterogeneity.fa -id $clustering_identity_threshold  -centroids "$sample"_cassette_consensus.fasta -sizeout -threads 24
     fi
 
     rm "$sample"_heterogeneity.fa "$sample"_heterogeneity.sorted.fa

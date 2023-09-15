@@ -20,26 +20,26 @@ feature_BED_files="/analysis/features_BED_files"
 #         exit 1
 #     fi
 # done
+check_folder() {
+    local folder="$1"
+    if [ ! -d "$folder" ]; then
+        echo " $folder does not exist."
+        exit 1
+    fi
+    if find "$folder" -maxdepth 0 -empty | grep -q "."; then
+        echo " $folder exists but is empty."
+        exit 1
+    else
+        echo " $folder exists and is not empty."
+    fi
+}
 
 
-if find "$sample_folder" -maxdepth 0 -empty | grep -q "."; then
-    echo " Sample folders not found, please check the path in JSON config file and make sure the files are present in s3 bucket"
-    exit 1
-fi
-
-unmasked_folder="/analysis/unmasked_references"
-if find "$unmasked_folder" -maxdepth 0 -empty | grep -q "."; then
-    echo " Unmasked references folder is empty, please check the path in JSON config file and make sure the files are present in s3 bucket"
-    exit 1
-fi
+check_folder "$sample_folder"
+check_folder "$unmasked_folder"
+check_folder "$feature_BED_files" 
 
 
-
-feature_BED_files="/analysis/features_BED_files/"
-if find "$feature_BED_files" -maxdepth 0 -empty | grep -q "."; then
-    echo "Feature BED file folder is empty, please check the path in JSON config file and make sure the files are present in s3 bucket"
-    exit 1
-fi
 
 
 
@@ -109,7 +109,7 @@ python3 /import/upload_reference_masking_output.py
 
 else
 
-aws s3 cp $path_to_indexed_genome /analysis/reference_masking_output/bwa_index/ --recursive
+aws s3 cp $path_to_indexed_genome /analysis/reference_masking_output/bwa_index/ --recursive  --quiet
 
 fi
 
