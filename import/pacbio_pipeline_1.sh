@@ -137,7 +137,7 @@ for i in $list_samples;do
 
     
     fasta_dir="/analysis/unmasked_references"
-    fasta_files=("$fasta_dir"/*)
+    fasta_files=("$fasta_dir"/*.!(fai))
     echo "reference,aligned_reads" > "$sample"_primary_aligned_counts.temp.csv
     echo "reference,aligned_reads" > "$sample"_primary_sup_aligned_counts.temp.csv
 
